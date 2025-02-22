@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { UserService } from '../../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { Home1Component } from '../../home1/home1.component';
 
 @Component({
   selector: 'app-connexion',
-  imports: [],
+  standalone:true,
+  imports: [ReactiveFormsModule, CommonModule, FormsModule, RouterModule],
   templateUrl: './inscription.component.html',
   styleUrl: './inscription.component.css'
 })
-export class ConnexionComponent implements OnInit {
+export class InscriptionComponent implements OnInit {
 
   selectedFile: File | null = null;
   registrationForm!:FormGroup
@@ -28,9 +33,9 @@ initForms():void{
     password: [''],
     phone_number: [''],
     profession: [''],
-    name_organization: [''],
-    nom_entreprise: [''],
-    secteur_activite: [''],
+    name_organization: ['', Validators.required],
+    nom_entreprise: ['', Validators.required],
+    secteur_activite: ['', Validators.required],
     enabled_notifications: [true]
   });
 
@@ -58,7 +63,9 @@ initForms():void{
     if (this.selectedFile) {
       formData.append('profile_pic', this.selectedFile, this.selectedFile.name);
     }
-
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
     this.userService.registerUser(formData).subscribe(
       response => console.log('Utilisateur enregistré', response),
       error => console.error('Erreur', error)
