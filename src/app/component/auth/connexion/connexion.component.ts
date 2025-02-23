@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { Router } from '@angular/router';
-import { AuthService } from './service-connexion/service-connexion.service';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../services/service/service.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-connexion',
+  
     templateUrl: './connexion.component.html',
     styleUrls: ['./connexion.component.css'],
-    standalone: false
+    standalone: true,
+    imports: [ReactiveFormsModule, CommonModule, RouterLink]
 })
 export class ConnexionComponent implements OnInit {
-  loginForm!: FormGroup;
+  registrationForm!: FormGroup;
   nom: any;
   errorMessage: string | null = null; // Stocker le message d'erreur
   isLoading: boolean = false; // Pour afficher un indicateur de chargement
@@ -19,18 +22,18 @@ export class ConnexionComponent implements OnInit {
   constructor(private authService: AuthService, private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
+    this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   onSubmit(): void {
-    if (this.loginForm.invalid) {
+    if (this.registrationForm.invalid) {
       return; // Si le formulaire est invalide, arrêter ici
     }
 
-    const { email, password } = this.loginForm.value;
+    const { email, password } = this.registrationForm.value;
     this.isLoading = true; // Activer l'indicateur de chargement
 
     this.authService.login(email, password).subscribe({
@@ -45,20 +48,15 @@ export class ConnexionComponent implements OnInit {
         localStorage.setItem('user_last_name', response.lastName);
          console.log("gggggggggggggg",response.role,"mmm", response.is_superuser)
         // Rediriger en fonction du rôle de l'utilisateur
-        if (response.role === 'apprenant') {
-          this.router.navigate(['/acceuil']);
+        if (response.role === 'citizen') {
+          this.router.navigate(['/dashboard-citizen']);
         } 
-        else if (response.role === 'employeur') {
-          this.router.navigate(['/EmployeurPage']);
+        else if (response.role === 'autority') {
+          this.router.navigate(['/dashboard-autority']);
         }
-        else if (response.role === 'formateur') {
-          this.router.navigate(['/gestionnaire/formateur-dashboard']);
+        else if (response.role === 'supplier') {
+          this.router.navigate(['/dashboard-supplier']);
         }
-        else if (response.role === 'admin' && Boolean(response.is_superuser) === true) {
-          console.log('L\'utilisateur est un admin superutilisateur');
-          this.router.navigate(['/admin/dashboard']);
-        }
-        
 
       },
       error: (error) => {

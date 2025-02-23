@@ -4,7 +4,7 @@ import { UserService } from '../../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { Home1Component } from '../../home1/home1.component';
+
 
 @Component({
   selector: 'app-connexion',
@@ -25,7 +25,7 @@ export class InscriptionComponent implements OnInit {
   }
 initForms():void{
   this.registrationForm = this.fb.group({
-    role: ['citizen', Validators.required],
+    role: ['', Validators.required],
     username: [null], // Champ séparé pour username
     first_name: [''],
     last_name: [''],
@@ -46,6 +46,21 @@ initForms():void{
       this.selectedFile = event.target.files[0];
     }
   }
+
+
+  isCitizen(): boolean {
+    return this.registrationForm.get('role')?.value === 'citizen';
+  }
+
+  isAutority(): boolean {
+    return this.registrationForm.get('role')?.value === 'autority';
+  }
+
+  isSupplier(): boolean {
+    return this.registrationForm.get('role')?.value === 'supplier';
+  }
+
+
   onSubmit() {
     const formData = new FormData();
     formData.append('role', this.registrationForm.value.role);

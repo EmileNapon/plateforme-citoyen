@@ -11,7 +11,7 @@ body, html {
 
 
 .navbar-custom {
-    background-color: #ffffff; /* Couleur de fond sombre de GitHub */
+    background-color: #fff; /* Couleur de fond sombre de GitHub */
     padding:2px;
     color:#1c1d1d
 }
@@ -53,14 +53,6 @@ body, html {
 }
 
 
-
-
-
-
-
-
-
-
 .nav-icon-text {
     display: flex;
     flex-direction: column;
@@ -73,5 +65,5 @@ body, html {
     margin-bottom: 0.25rem; /* Espacement entre l’icône et le texte */
 }
 .nav-text {
-    font-size: 16px; /* Texte légèrement plus petit pour équilibrer avec l’icône */
+    font-size: 13px; /* Texte légèrement plus petit pour équilibrer avec l’icône */
 }

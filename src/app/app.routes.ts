@@ -1,11 +1,16 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './component/home/home.component';
+
 import { InscriptionComponent } from './component/auth/inscription/inscription.component';
-import { Home1Component } from './component/home1/home1.component';
+import { HomeComponent } from './component/home/home.component';
 import { ConnexionComponent } from './component/auth/connexion/connexion.component';
+import { CitoyenDashboardComponent } from './component/dashboard/citoyen-dashboard/citoyen-dashboard.component';
 
 export const routes: Routes = [
-    { path: '', component: Home1Component },
+    { path: 'home', component: HomeComponent },
     { path: 'register', component: InscriptionComponent },
     { path: 'connexion', component: ConnexionComponent },
+    { path: 'dashboard-citizen', component: CitoyenDashboardComponent },
+    
 ];
+
+
