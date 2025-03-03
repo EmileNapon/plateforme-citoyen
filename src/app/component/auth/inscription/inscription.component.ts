@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule} f
 import { UserService } from '../../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterModule, RouterOutlet } from '@angular/router';
+import { Router } from 'express';
 
 
 @Component({
@@ -85,6 +86,7 @@ initForms():void{
       response => console.log('Utilisateur enregistré', response),
       error => console.error('Erreur', error)
     );
+    
   }
 }
 

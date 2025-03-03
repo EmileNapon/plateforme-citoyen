@@ -78,8 +78,8 @@ export class AuthService {
       // Adapter les champs en fonction de la structure de votre API
       this.userId = response.id; // Récupération de l'identifiant
       this.userEmail = response.email;
-      this.userFirstName = response.prenom; // Prénom
-      this.userLastName = response.nom; // Nom
+      this.userFirstName = response.first_name; // Prénom
+      this.userLastName = response.last_name; // Nom
       this.userRole = response.role; // Récupération du rôle
       this.userIsSuperuser = response.userIsSuperuser; // Récupération du rôle
 
@@ -94,8 +94,8 @@ export class AuthService {
       if (this.isBrowser) {
         localStorage.setItem('user_id', response.id);
         localStorage.setItem('user_email', response.email);
-        localStorage.setItem('user_first_name', response.prenom);
-        localStorage.setItem('user_last_name', response.nom);
+        localStorage.setItem('user_first_name', response.first_name);
+        localStorage.setItem('user_last_name', response.last_name);
         localStorage.setItem('user_role', response.role); // Stocker le rôle
         localStorage.setItem('user_is_superuser', response.userIsSuperuser); // Stocker le rôle
 

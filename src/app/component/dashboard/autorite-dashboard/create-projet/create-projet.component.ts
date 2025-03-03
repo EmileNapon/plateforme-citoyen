@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ProjectService } from '../../../services/projet-service/projet-service';
-import { Project } from '../../../models/projet/projet.model';
-import { NavbarPrincipaleComponent } from '../../utils/navbar-principale/navbar-principale.component';
+import { ProjectService } from '../../../../services/projet-service/projet-service';
+import { Project } from '../../../../models/projet/projet.model';
+import { NavbarPrincipaleComponent } from '../../../utils/navbar-principale/navbar-principale.component';
 import { CommonModule } from '@angular/common';
 
+
+
 @Component({
-  selector: 'app-autorite-dashboard',
-  imports: [ReactiveFormsModule, NavbarPrincipaleComponent, CommonModule, RouterLink],
-  templateUrl: './autorite-dashboard.component.html',
-  styleUrl: './autorite-dashboard.component.css'
+  selector: 'app-create-projet',
+  imports: [ReactiveFormsModule, NavbarPrincipaleComponent, CommonModule],
+  templateUrl: './create-projet.component.html',
+  styleUrl: './create-projet.component.css'
 })
-export class AutoriteDashboardComponent {
+export class CreateProjetComponent implements OnInit {
 
   prestataires:any[]=[]
   prestatairesFiltre:any[]=[]
@@ -41,14 +43,9 @@ export class AutoriteDashboardComponent {
       geo_coordinates: ['', [Validators.required]],
       progress: ['', [Validators.required, Validators.min(0), Validators.max(100)]]
     });
-
-    this.projectId = this.route.snapshot.params['id'];
-    if (this.projectId) {
-      this.isEditMode = true;
-      this.loadProject();
-    }
     this.loadPrestataire()
   }
+
 
   loadProject(): void {
     this.projectService.getProjectById(this.projectId!).subscribe((project) => {
@@ -65,14 +62,15 @@ export class AutoriteDashboardComponent {
 
   filData(){
     this.prestatairesFiltre=this.prestataires.filter(user=>user.role=='supplier')
-    console.log('tttttttttttt',this.prestatairesFiltre)
+    console.log('tttttttttttt1111111111111111',this.prestatairesFiltre)
   }
+
+
 
   onSubmit(): void {
     if (this.projectForm.invalid) {
       return;
     }
-
     const projectData: Project = this.projectForm.value;
 
     if (this.isEditMode) {
@@ -85,4 +83,5 @@ export class AutoriteDashboardComponent {
       });
     }
   }
+
 }
