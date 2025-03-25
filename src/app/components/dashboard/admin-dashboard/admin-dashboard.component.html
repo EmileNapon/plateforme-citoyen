@@ -1,0 +1,72 @@
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+      <nav class="col-2 bg-light text-black  d-flex flex-column">
+        <h4 class="text-center my-4">Dashbord-Admin</h4>
+        <ul class="nav flex-column">
+          <li class="nav-item btn text-start">
+            <a class="nav-link text-black" (click)='ngAutoriteVisible()' >Autorites</a>
+          </li>
+          <li class="nav-item btn text-start">
+            <a class="nav-link text-black" (click)='ngPrestatairesVisible()' >Prestataires</a>
+          </li>
+          <li class="nav-item btn text-start">
+            <a class="nav-link text-black" (click)='ngCitoyenVisible()' >Citoyens</a>
+          </li>
+
+          <li class="nav-item btn text-start">
+            <a class="nav-link text-black" (click)='ngProjetVisible()'>Projets</a>
+          </li>
+          <li class="nav-item btn text-start">
+            <a class="nav-link text-black" (click)='ngAvisVisible()' >Les avis</a>
+          </li>
+        </ul>
+      </nav>
+      <main class="col-10">
+        <div class="bg-light p-3 border-bottom">
+            <div class="row d-flex align-items-center justify-content-between" *ngIf='autoritevisible'>
+                <div class="col">
+                    <h4 class="text-left">Autorites publiques disponibles</h4>
+                </div>            
+            </div>
+            <div class="row d-flex align-items-center justify-content-between" *ngIf='prestatairesVisible' >
+                <div class="col">
+                    <h4 class="text-left">Les prestataires disponibles</h4>
+                </div>
+            </div> 
+            <div class="row d-flex align-items-center justify-content-between" *ngIf='citoyenVisible'>
+                <div class="col">
+                    <h4 class="text-left">Les citoyens disponibles</h4>
+                </div>
+            </div> 
+            <div class="row d-flex align-items-center justify-content-between" *ngIf='projetVisible'>
+                <div class="col">
+                    <h4 class="text-left">Les projets disponibles</h4>
+                </div>
+            </div>
+            <div class="row d-flex align-items-center justify-content-between" *ngIf='avisVisible' >
+                <div class="col">
+                    <h4 class="text-left">Les avis disponibles</h4>
+                </div>
+            </div>  
+        </div>
+
+        <div *ngIf='autoritevisible'>
+          <app-list-authorite/>
+        </div>
+
+        <div *ngIf='prestatairesVisible'>
+         <app-list-prestataire/>
+        </div>
+
+        <div  *ngIf='citoyenVisible'>
+         <app-list-citoyen/>
+        </div>
+
+    </main>
+
+
+</div>
