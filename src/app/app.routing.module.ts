@@ -28,7 +28,7 @@ import { PrestataireDashboardComponent } from './components/dashboard/prestatair
 
 const routes: Routes = [
       
-  {path : 'plateforme-integree/home', component:HomeComponent},
+  {path : '', component:HomeComponent},
   {path : 'plateforme-integree', component:AppComponent, children:[
 
   {path : 'auth', component:ConnexionComponent},
