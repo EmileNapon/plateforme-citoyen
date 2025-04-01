@@ -22,29 +22,29 @@ import { HomeComponent } from './components/home/home.component';
 import { AdminDashboardComponent } from './components/dashboard/admin-dashboard/admin-dashboard.component';
 import { AutoriteDashboardComponent } from './components/dashboard/autorite-dashboard/autorite-dashboard.component';
 import { PrestataireDashboardComponent } from './components/dashboard/prestataire-dashboard/prestataire-dashboard.component';
+import { ListProjetsComponent } from './components/projets/list-projets/list-projets.component';
+import { DetailProjetComponent } from './components/projets/detail-projet/detail-projet.component';
+import { DeleteProjetComponent } from './components/projets/delete-projet/delete-projet.component';
+import { CreateProjetComponent } from './components/projets/create-projet/create-projet.component';
+import { EditProjetComponent } from './components/projets/edit-projet/edit-projet.component';
 
 
 
 
 const routes: Routes = [
       
-  {path : '', component:HomeComponent},
-  {path : 'plateforme-integree', component:AppComponent, children:[
 
+  
+  {path : 'plateforme-integree', component:AppComponent, children:[
+  {path : 'home', component:HomeComponent},
   {path : 'auth', component:ConnexionComponent},
   {path : 'sign', component:InscriptionComponent},
 
 
-  {path : 'dashboard-admin', component:AdminDashboardComponent},
+  
   {path : 'dashboard-autorite', component:AutoriteDashboardComponent},
   {path : 'dashboard-prestataire', component:PrestataireDashboardComponent},
    
-  {path : 'list-autorites', component:ListAutoriteComponent},
-  {path : 'create-autorite', component:CreateAutoriteComponent},
-  {path : 'delete-autorite', component:DeleteAutoriteComponent},
-  {path : 'edit-autorite', component:EditAutoriteComponent},
-  {path : 'detail-autorite', component:DetailAutoriteComponent},
-
  {path : 'list-citoyens', component:ListCitoyenComponent},
   {path : 'create-citoyen', component:CreateCitoyenComponent},
   {path : 'delete-citoyen', component:DeleteCitoyenComponent},
@@ -58,7 +58,21 @@ const routes: Routes = [
   {path : 'detail-prestataire', component:DetailPrestataireComponent},
 
 
+  {path : 'list-autorites', component:ListAutoriteComponent},
+  {path : 'create-autorite', component:CreateAutoriteComponent},
+  {path : 'delete-autorite', component:DeleteAutoriteComponent},
+  {path: 'autorites/:updateAutorite/update', component: EditAutoriteComponent},
+  {path : 'detail-autorite', component:DetailAutoriteComponent},
 
+
+  {path : 'list-projets', component:ListProjetsComponent},
+  {path : 'create-projet', component:CreateProjetComponent},
+  {path : 'delete-projet', component:DeleteProjetComponent},
+  {path: 'projet/:updateprojet/update', component: EditProjetComponent},
+  {path : 'detail-projet', component:DetailProjetComponent},
+
+  {path : 'dashboard-admin', component:AdminDashboardComponent}
+  
 
 
   

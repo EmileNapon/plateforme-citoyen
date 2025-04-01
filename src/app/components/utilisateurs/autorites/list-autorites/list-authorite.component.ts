@@ -85,10 +85,10 @@ export class ListAutoriteComponent implements OnInit {
     this.route.navigate([`/admin/apprenants/${apprenantId}/detail/`])
   }
   allerEdit(updateApprenantId:number):void{
-    this.route.navigate([`/admin/apprenants/${updateApprenantId}/update/`])
+    this.route.navigate([`/plateforme-integree/autorites/${updateApprenantId}/update`])
   }
   onDeleteApprenant(updateApprenantId:number):void{
-    this.route.navigate([`/admin/apprenants/${updateApprenantId}/update/`])
+    this.route.navigate([`/plateforme-integree/apprenants/${updateApprenantId}/update/`])
   }
 
 }

@@ -25,33 +25,65 @@
           </li>
         </ul>
       </nav>
+      
+
+
+     
       <main class="col-10">
-        <div class="bg-light p-3 border-bottom">
+        <div class="bg-light p-3 border-bottom" style='display:inline-flex;'>
             <div class="row d-flex align-items-center justify-content-between" *ngIf='autoritevisible'>
                 <div class="col">
-                    <h4 class="text-left">Autorites publiques disponibles</h4>
+                    <h4 class="text-left">Autorites publiques</h4>
                 </div>            
             </div>
             <div class="row d-flex align-items-center justify-content-between" *ngIf='prestatairesVisible' >
                 <div class="col">
-                    <h4 class="text-left">Les prestataires disponibles</h4>
+                    <h4 class="text-left">Les prestataires</h4>
                 </div>
             </div> 
             <div class="row d-flex align-items-center justify-content-between" *ngIf='citoyenVisible'>
                 <div class="col">
-                    <h4 class="text-left">Les citoyens disponibles</h4>
+                    <h4 class="text-left">Les citoyens</h4>
                 </div>
             </div> 
-            <div class="row d-flex align-items-center justify-content-between" *ngIf='projetVisible'>
+            <div class="row d-flex align-items-center justify-content-between" *ngIf='projetListVisible'>
                 <div class="col">
-                    <h4 class="text-left">Les projets disponibles</h4>
+                    <h4 class="text-left">Les projets</h4>
                 </div>
             </div>
             <div class="row d-flex align-items-center justify-content-between" *ngIf='avisVisible' >
                 <div class="col">
-                    <h4 class="text-left">Les avis disponibles</h4>
+                    <h4 class="text-left">Les avis</h4>
                 </div>
-            </div>  
+            </div>
+            
+              
+            <div *ngIf="userInfo?.email" class='ms-auto' style="padding-left: 900px;">
+              <div 
+                class="dropdown"
+                (mouseenter)="showDropdown()" 
+                (mouseleave)="hideDropdown()"
+              >
+                <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false">
+                  <i class="bi bi-person-fill"></i>
+                </a>
+                <span class="dropdown-item">{{ userInfo?.firstName }} {{ userInfo?.lastName }}</span>
+          
+                <!-- Menu de déconnexion -->
+                <ul 
+                  class="dropdown-menu show" 
+                  *ngIf="isDropdownOpen"
+                >
+                  <li>
+                    <button class="dropdown-item" (click)="onLogout()">
+                      <i class="bi bi-power"></i>
+                      <span style="padding-left: 5px;" >Déconnexion</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+      
         </div>
 
         <div *ngIf='autoritevisible'>
@@ -65,6 +97,23 @@
         <div  *ngIf='citoyenVisible'>
          <app-list-citoyen/>
         </div>
+
+
+        <div *ngIf='projetListVisible'>
+          <button (click)="ngGetCreateProjet()"  >
+         Ajouter un projet
+          </button>
+        </div>
+
+        <div *ngIf='createProjetVisible'>
+          <app-create-projet/>
+        </div>
+
+        <div  *ngIf='projetListVisible'>
+          <app-list-projets/>
+         </div>
+         
+
 
     </main>
 

@@ -57,7 +57,9 @@ export class ConnexionComponent implements OnInit {
         else if (response.role === 'supplier') {
           this.router.navigate(['/plateforme-integree/dashboard-prestataire']);
         }
-
+        else if (response.role === 'admin') {
+          this.router.navigate(['/plateforme-integree/dashboard-admin']);
+        }
       },
       error: (error) => {
         console.error('Error logging in:', error);

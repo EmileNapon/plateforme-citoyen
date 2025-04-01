@@ -20,12 +20,12 @@
                                     <span class="nav-text">Accueil </span>
                                 </a>
                             <li class="nav-item">
-                                <a class="nav-link nav-icon-text" href="#features">
+                                <button class="nav-link nav-icon-text" (click)='ngProjetVisible()'>
                                     <span class="nav-text">Projets en cours</span>
-                                </a>
+                                </button>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link nav-icon-text" href="#features">
+                              <a class="nav-link nav-icon-text" >
                                   <span class="nav-text">Histories</span>
                               </a>
                           </li>
@@ -85,6 +85,12 @@
             </div>
         </div>
     </nav>
+
+    <div class='container'>
+      <div *ngIf='projetListVisible==true'>
+        <app-list-projets/>
+       </div>
+    </div>
 
 
     
